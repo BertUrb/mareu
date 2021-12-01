@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/second_line"
+        android:src="@drawable/ic_green_circle_24"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/circle"
+        app:layout_constraintTop_toTopOf="@id/circle"
+        android:id="@+id/first_line"
+        android:text="@string/placeholder"
+        android:textSize="24sp"
+        android:fontFamily="@font/font_family_bold"
+        android:gravity="start"
+
+         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/second_line"
+        app:layout_constraintTop_toBottomOf="@id/first_line"
+        app:layout_constraintStart_toEndOf="@id/circle"
+        app:layout_constraintBottom_toBottomOf="@id/circle"
+        android:text="@string/placeholder"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toStartOf="@+id/item_delete_button"
+        android:gravity="start"
+
+         />
+    <ImageButton
+        android:id="@+id/item_delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/second_line"
+        android:layout_marginEnd="16dp"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/first_line"
+        app:srcCompat="@drawable/ic_baseline_delete_24"
+     />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

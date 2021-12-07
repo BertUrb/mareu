@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.MeetingMiscInfosFragment">
+
+    <EditText
+        android:id="@+id/email_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints="emailAddress"
+        android:drawableStart="@drawable/ic_baseline_email_24"
+        android:drawablePadding="12dp"
+        android:hint="@string/comma_separated_emails"
+        android:inputType="textEmailAddress"/>
+
+    <!--Pick color Button-->
+    <Button
+        android:id="@+id/pick_color_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pick_color" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/your_picked_color_is" />
+
+    <!--sample view to preview selected color by user-->
+    <!--by default this has been set to darker gery-->
+    <!--this can be overridden after user chose the
+        color from color picker-->
+    <!--which has been handled in the MainActivity.java-->
+    <View
+        android:id="@+id/preview_selected_color"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="12dp"
+        android:text="@string/place"
+        app:drawableStartCompat="@drawable/ic_baseline_place_24" />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/places_array"
+        android:id="@+id/meeting_place"
+        />
+
+
+
+
+
+
+
+</LinearLayout>

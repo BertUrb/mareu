@@ -9,6 +9,19 @@
             android:icon="@drawable/ic_baseline_filter_alt_24"
             app:showAsAction="ifRoom"
 
-            android:title="@string/filter" />
+            android:title="@string/filter" >
+                <menu>
+                        <item android:id="@+id/no_filter_item_menu"
+                            android:title="@string/no_filter" />
+                        <item android:id="@+id/filter_by_date"
+                            android:title="@string/filter_by_date">
+                                <menu android:id="@+id/dates"></menu>
+                        </item>
+                        <item android:id="@+id/filter_by_place"
+                                android:title="@string/filter_by_place">
+                                <menu android:id="@+id/places"></menu>
+                        </item>
+                </menu>
+        </item>
 
 </menu>

@@ -9,13 +9,23 @@ public class Meeting {
     private String mMeetingSubject;
     private List<String> mMeetingUsers;
     private String mMeetingPlace;
+    private Integer mMeetingColor;
 
-    public Meeting(String meetingTime, String meetingDate, String meetingSubject, List<String> meetingUsers, String meetingPlace) {
+    public Integer getMeetingColor() {
+        return mMeetingColor;
+    }
+
+    public void setMeetingColor(Integer meetingColor) {
+        mMeetingColor = meetingColor;
+    }
+
+    public Meeting(String meetingTime, String meetingDate, String meetingSubject, List<String> meetingUsers, String meetingPlace, Integer meetingColor) {
         mMeetingTime = meetingTime;
         mMeetingDate = meetingDate;
         mMeetingSubject = meetingSubject;
         mMeetingUsers = meetingUsers;
         mMeetingPlace = meetingPlace;
+        mMeetingColor = meetingColor;
     }
 
     public String getMeetingTime() {

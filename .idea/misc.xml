@@ -5,8 +5,13 @@
       <map>
         <entry key="..\:/docs/Formation/Maru/app/src/main/res/drawable/ic_green_circle_24.xml" value="0.2703125" />
         <entry key="..\:/docs/Formation/Maru/app/src/main/res/drawable/ic_red_circle_24.xml" value="0.2703125" />
+        <entry key="..\:/docs/Formation/Maru/app/src/main/res/font/font_family_bold.xml" value="0.16041666666666668" />
+        <entry key="..\:/docs/Formation/Maru/app/src/main/res/layout-land/activity_add_meeting.xml" value="0.11022927689594356" />
+        <entry key="..\:/docs/Formation/Maru/app/src/main/res/layout/activity_add_meeting.xml" value="0.13020833333333334" />
         <entry key="..\:/docs/Formation/Maru/app/src/main/res/layout/activity_list_meetings.xml" value="0.264" />
-        <entry key="..\:/docs/Formation/Maru/app/src/main/res/layout/list_item_meeting.xml" value="0.11614583333333334" />
+        <entry key="..\:/docs/Formation/Maru/app/src/main/res/layout/fragment_meeting_first_infos.xml" value="0.13020833333333334" />
+        <entry key="..\:/docs/Formation/Maru/app/src/main/res/layout/fragment_meeting_misc_infos.xml" value="0.11614583333333334" />
+        <entry key="..\:/docs/Formation/Maru/app/src/main/res/layout/list_item_meeting.xml" value="0.4" />
         <entry key="..\:/docs/Formation/Maru/app/src/main/res/menu/menu_main.xml" value="0.25416666666666665" />
       </map>
     </option>

@@ -2,6 +2,7 @@ package com.mjcdouai.maru.ui;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,4 +28,5 @@ public class MeetingViewHolder extends RecyclerView.ViewHolder {
     {
         return mBinding.secondLine;
     }
+    public ImageView getCircle(){return mBinding.circle;}
 }

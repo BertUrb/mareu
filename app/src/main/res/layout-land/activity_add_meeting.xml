@@ -7,25 +7,21 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_first_infos"
-                android:name="com.mjcdouai.maru.ui.MeetingFirstInfosFragment"
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                />
+        <include layout="@layout/meeting_first_infos_part"
+            android:id="@+id/first_infos"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp" />
+
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:orientation="vertical"
             >
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_misc_infos"
-                android:name="com.mjcdouai.maru.ui.MeetingMiscInfosFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+            <include layout="@layout/meeting_misc_infos_part"
+                android:id="@+id/misc_infos"/>
             <Button
                 android:id="@+id/create_meeting_button"
                 android:layout_width="match_parent"

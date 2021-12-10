@@ -16,21 +16,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_first_infos"
-                android:name="com.mjcdouai.maru.ui.MeetingFirstInfosFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <include layout="@layout/meeting_first_infos_part"
+                android:id="@+id/first_infos"/>
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/fragment_misc_infos"
-                android:name="com.mjcdouai.maru.ui.MeetingMiscInfosFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/fragment_first_infos"
-                app:layout_constraintTop_toBottomOf="@id/fragment_first_infos" />
+            <include layout="@layout/meeting_misc_infos_part"
+                android:id="@+id/misc_infos"/>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

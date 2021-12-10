@@ -8,8 +8,9 @@ public interface MeetingApiService {
     List<Meeting> getMeetings();
     void addMeeting(Meeting meeting);
     void delMeeting(Meeting meeting);
-    List<Meeting> FilterMeetingByDate(String date);
-    List<Meeting> FilterMeetingByPlace(String place);
+    List<Meeting> filterMeetingByDate(String date);
+    List<Meeting> filterMeetingByPlace(String place);
+    String[] getRooms();
 
 
 }

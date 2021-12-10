@@ -13,6 +13,9 @@ public class Meeting implements Parcelable {
     private List<String> mMeetingUsers;
     private String mMeetingPlace;
     private Integer mMeetingColor;
+    public static final String[] mMeetingPlaces = {
+            "Mario","Luigi","Peach","Room 4","Room 5","Room 6","Room 7","Room 8", "Room 9", "Room 10"
+    };
 
     protected Meeting(Parcel in) {
         mMeetingTime = in.readString();

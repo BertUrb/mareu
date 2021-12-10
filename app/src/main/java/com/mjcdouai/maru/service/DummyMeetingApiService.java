@@ -26,7 +26,7 @@ public class DummyMeetingApiService implements  MeetingApiService{
     }
 
     @Override
-    public List<Meeting> FilterMeetingByDate(String date) {
+    public List<Meeting> filterMeetingByDate(String date) {
         mFilteredMeeting.clear();
         for(Meeting meeting : mMeetings)
         {
@@ -40,7 +40,7 @@ public class DummyMeetingApiService implements  MeetingApiService{
     }
 
     @Override
-    public List<Meeting> FilterMeetingByPlace(String place) {
+    public List<Meeting> filterMeetingByPlace(String place) {
         mFilteredMeeting.clear();
         for(Meeting meeting : mMeetings)
         {
@@ -51,5 +51,10 @@ public class DummyMeetingApiService implements  MeetingApiService{
         }
         return mFilteredMeeting;
 
+    }
+
+    @Override
+    public String[] getRooms() {
+        return Meeting.mMeetingPlaces;
     }
 }

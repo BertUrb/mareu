@@ -1,19 +1,13 @@
 package com.mjcdouai.maru.ui;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +18,6 @@ import com.mjcdouai.maru.di.DI;
 import com.mjcdouai.maru.model.Meeting;
 import com.mjcdouai.maru.service.MeetingApiService;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -66,10 +59,7 @@ public class ListMeetingsActivity extends AppCompatActivity implements View.OnCl
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
        if(item.getTitle().equals(getResources().getString(R.string.filter_by_date)))
        {
-           DatePickerDialog.OnDateSetListener dateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
-
-               initList(mApi.filterMeetingByDate(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year));
-           };
+           DatePickerDialog.OnDateSetListener dateSetListener = (view, year, monthOfYear, dayOfMonth) -> initList(mApi.filterMeetingByDate(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year));
            final Calendar c = Calendar.getInstance();
            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                    dateSetListener, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));

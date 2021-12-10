@@ -1,24 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.MeetingMiscInfosFragment">
+    android:orientation="vertical">
+            <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/email_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints="emailAddress"
-        android:drawableStart="@drawable/ic_baseline_email_24"
-        android:drawablePadding="12dp"
-        android:hint="@string/comma_separated_emails"
-        android:inputType="textEmailAddress"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/emails" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:duplicateParentState="false">
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="43dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="5dp"
+                android:minWidth="32dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_min="32dp">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etValue"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionDone"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
 
     <!--Pick color Button-->
     <Button

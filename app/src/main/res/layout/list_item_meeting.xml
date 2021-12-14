@@ -2,21 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="12dp">
 
     <ImageView
         android:id="@+id/circle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_green_circle_24"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_baseline_circle_50"
         app:layout_constraintBottom_toBottomOf="@id/second_line"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@string/meeting_color"/>
 
     <TextView
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         android:id="@+id/first_line"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="start"
         android:text="@string/placeholder"
@@ -26,9 +29,12 @@
         app:layout_constraintTop_toTopOf="@id/circle"
         app:layout_constraintEnd_toStartOf="@id/item_delete_button"
         app:layout_constrainedWidth="true"/>
+
     <TextView
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         android:id="@+id/second_line"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:gravity="start"
@@ -39,6 +45,7 @@
         app:layout_constraintTop_toBottomOf="@id/first_line"
         app:layout_constraintEnd_toStartOf="@id/item_delete_button"
         app:layout_constrainedWidth="true"/>
+
     <ImageButton
         android:id="@+id/item_delete_button"
         android:layout_width="wrap_content"
@@ -50,7 +57,5 @@
         app:layout_constraintTop_toTopOf="@id/first_line"
         app:srcCompat="@drawable/ic_baseline_delete_24"
         android:contentDescription="@string/delete_button" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

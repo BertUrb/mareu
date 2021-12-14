@@ -6,12 +6,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:padding="12dp"
         >
         <include layout="@layout/meeting_first_infos_part"
             android:id="@+id/first_infos"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:layout_width="0dp" />
+            android:layout_width="0dp"
+            />
 
 
         <LinearLayout
@@ -19,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:orientation="vertical"
+            android:padding="12dp"
             >
             <include layout="@layout/meeting_misc_infos_part"
                 android:id="@+id/misc_infos"/>

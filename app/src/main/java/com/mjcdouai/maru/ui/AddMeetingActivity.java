@@ -4,12 +4,10 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,7 +41,6 @@ public class AddMeetingActivity extends AppCompatActivity implements View.OnClic
     private int lastSelectedMinute = -1;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +55,30 @@ public class AddMeetingActivity extends AppCompatActivity implements View.OnClic
         mLastSelectedMonth = c.get(Calendar.MONTH);
         mLastSelectedDayOfMonth = c.get(Calendar.DAY_OF_MONTH);
 
-        mBinding.firstInfos.buttonDate.setOnClickListener( v-> buttonSelectDate());
-        mBinding.firstInfos.buttonTime.setOnClickListener( v-> buttonSelectTime());
+        mBinding.firstInfos.buttonDate.setOnClickListener(v -> buttonSelectDate());
+        mBinding.firstInfos.buttonTime.setOnClickListener(v -> buttonSelectTime());
+
+        // chip group
+        mBinding.miscInfos.etValue.setOnEditorActionListener((v, actionId, event) -> {
+
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                String txtVal = v.getText().toString();
+                if (!txtVal.isEmpty()) {
+                    if (isValidEmail(txtVal)) {
+
+
+                        addChipToGroup(txtVal, mBinding.miscInfos.chipGroup2);
+                        mBinding.miscInfos.etValue.setText("");
+                    } else {
+                        Toast toast = Toast.makeText(this, getString(R.string.toast_not_valid_mail), Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+                return true;
+            }
+            // Return true if you have consumed the action, else false.
+            return false;
+        });
 
         // register two of the buttons with their
         // appropriate IDs
@@ -139,45 +158,26 @@ public class AddMeetingActivity extends AppCompatActivity implements View.OnClic
         String subject = mBinding.firstInfos.meetingSubjectInput.getText().toString();
         String date = mBinding.firstInfos.editTextDate.getText().toString();
         String time = mBinding.firstInfos.editTextTime.getText().toString();
-
-
-
-
         String place = mBinding.miscInfos.meetingPlace.getSelectedItem().toString();
 
-        // chipgroup
-        mBinding.miscInfos.etValue.setOnEditorActionListener((v, actionId, event) -> {
-            Log.d("blah", "onEditorAction: ");
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                String txtVal = v.getText().toString();
-                if (!txtVal.isEmpty()) {
-                    Log.d("blah", "onEditorAction: ");
-                    addChipToGroup(txtVal, mBinding.miscInfos.chipGroup2);
-                    mBinding.miscInfos.etValue.setText("");
-                }
-                return true;
-            }
-            // Return true if you have consumed the action, else false.
-            return false;
-        });
         List<String> list = new ArrayList<>();
-        for(int id : mBinding.miscInfos.chipGroup2.getCheckedChipIds())
-        {
-            Chip chip = mBinding.miscInfos.chipGroup2.findViewById(id);
+        for (int i = 0; i < mBinding.miscInfos.chipGroup2.getChildCount(); i++) {
+            Chip chip = (Chip) mBinding.miscInfos.chipGroup2.getChildAt(i);
             list.add(chip.getText().toString());
+
         }
 
-
-        Meeting meeting = new Meeting(time, date, subject,list , place, mDefaultColor);
+        Meeting meeting = new Meeting(time, date, subject, list, place, mDefaultColor);
         mApi.addMeeting(meeting);
 
         finish();
     }
+
     private void buttonSelectDate() {
         // Date Select Listener.
         DatePickerDialog.OnDateSetListener dateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
 
-            mBinding.firstInfos.editTextDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+            mBinding.firstInfos.editTextDate.setText(getString(R.string.date_format, dayOfMonth, monthOfYear + 1, year));
 
             mLastSelectedYear = year;
             mLastSelectedMonth = monthOfYear;
@@ -185,35 +185,32 @@ public class AddMeetingActivity extends AppCompatActivity implements View.OnClic
         };
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                    dateSetListener, mLastSelectedYear, mLastSelectedMonth, mLastSelectedDayOfMonth);
+                dateSetListener, mLastSelectedYear, mLastSelectedMonth, mLastSelectedDayOfMonth);
 
 
         // Show
         datePickerDialog.show();
     }
+
     private void buttonSelectTime() {
         TimePickerDialog.OnTimeSetListener timeSetListener = (view, hourOfDay, minute) -> {
-            mBinding.firstInfos.editTextTime.setText(hourOfDay + ":" + minute );
+            mBinding.firstInfos.editTextTime.setText(getString(R.string.time_format, hourOfDay, minute));
             lastSelectedHour = hourOfDay;
             lastSelectedMinute = minute;
         };
 
-        // Create TimePickerDialog:
         TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                    timeSetListener, lastSelectedHour, lastSelectedMinute, false);
+                timeSetListener, lastSelectedHour, lastSelectedMinute, false);
 
 
-        // Show
         timePickerDialog.show();
     }
 
     private void addChipToGroup(String txt, ChipGroup chipGroup) {
-        Chip chip =  new Chip(getBaseContext());
-        chip.setText(txt);
+        Chip chip = new Chip(this);
 
-//        chip.chipIcon = ContextCompat.getDrawable(requireContext(), baseline_person_black_18)
+        chip.setText(txt);
         chip.setCloseIconVisible(true);
-        chip.setChipIconTintResource(R.color.purple_500);
 
         // necessary to get single selection working
         chip.setClickable(false);
@@ -221,20 +218,9 @@ public class AddMeetingActivity extends AppCompatActivity implements View.OnClic
         chipGroup.addView(chip);
 
         chip.setOnCloseIconClickListener(v -> chipGroup.removeView(chip));
-        printChipsValue(chipGroup);
-
-    }
-    private void printChipsValue(ChipGroup chipGroup) {
-        for (int i=0;i<chipGroup.getChildCount();i++) {
-            Chip chipObj = (Chip) chipGroup.getChildAt(i);
-            Log.d("Chips text :: " , chipObj.getText().toString());
-
-        }
     }
 
-
-
-
-
-
+    private boolean isValidEmail(CharSequence target) {
+        return target != null && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
 }

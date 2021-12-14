@@ -26,20 +26,14 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
                 android:layout_width="wrap_content"
-                android:layout_height="43dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="5dp"
-                android:minWidth="32dp"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_min="32dp">
+                android:layout_height="wrap_content"
+                android:visibility="visible">
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etValue"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
                     android:background="@android:color/transparent"
                     android:imeOptions="actionDone"
                     android:maxLines="1"
@@ -86,6 +80,7 @@
         android:layout_height="wrap_content"
         android:entries="@array/places_array"
         android:id="@+id/meeting_place"
+        android:spinnerMode="dialog"
         />
 
 

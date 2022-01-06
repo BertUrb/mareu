@@ -1,5 +1,7 @@
 package com.mjcdouai.maru.service;
 
+import android.util.Log;
+
 import com.mjcdouai.maru.model.Meeting;
 
 import java.util.ArrayList;

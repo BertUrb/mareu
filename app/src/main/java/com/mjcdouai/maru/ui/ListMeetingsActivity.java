@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -57,6 +58,7 @@ public class ListMeetingsActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
        if(item.getTitle().equals(getResources().getString(R.string.filter_by_date)))
        {
            DatePickerDialog.OnDateSetListener dateSetListener = (view, year, monthOfYear, dayOfMonth) -> initList(mApi.filterMeetingByDate(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year));

@@ -16,6 +16,8 @@ import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.ViewAssertion;
 
+import java.util.Objects;
+
 //This class comes from Project 2
 public class RecyclerViewUtils {
 
@@ -33,9 +35,8 @@ public class RecyclerViewUtils {
             }
 
             RecyclerView recyclerView = (RecyclerView) view;
-            RecyclerView.Adapter adapter = recyclerView.getAdapter();
-            assert adapter != null;
-            assertThat(adapter.getItemCount(), is(expectedCount));
+
+            assertThat(Objects.requireNonNull(recyclerView.getAdapter()).getItemCount(), is(expectedCount));
         }
     }
 

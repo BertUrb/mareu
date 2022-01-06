@@ -11,8 +11,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
@@ -41,49 +39,54 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import top.defaults.colorpicker.ColorPickerView;
-
 @RunWith(AndroidJUnit4.class)
 public class MeetingListTest {
 
     @Rule
     public ActivityScenarioRule<ListMeetingsActivity> mActivityRule =
             new ActivityScenarioRule<>(ListMeetingsActivity.class);
-    private int currentMeetingsSize= -1;
+    private int currentMeetingsSize = -1;
+
+    public static Matcher<Root> isPopupWindow() {
+        return isPlatformPopup();
+    }
 
     @Before
     public void setUp() {
-        MeetingApiService api = DI.getNewInstanceMeetingApiService();
+        MeetingApiService api = DI.getMeetingApiService();
         ActivityScenario<ListMeetingsActivity> activity = mActivityRule.getScenario();
         assertThat(activity, notNullValue());
         currentMeetingsSize = api.getMeetings().size();
 
     }
+
     @Test
     public void checkRecyclerViewItemCount() {
         onView(ViewMatchers.withId(R.id.recyclerview)).check(new RecyclerViewUtils.ItemCount(currentMeetingsSize));
     }
 
     @Test
-    public void checkDeleteOnButtonClick(){
+    public void checkDeleteOnButtonClick() {
         onView(ViewMatchers.withId(R.id.recyclerview))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0,RecyclerViewUtils.clickChildView(R.id.item_delete_button)));
-        onView(ViewMatchers.withId(R.id.recyclerview)).check(new RecyclerViewUtils.ItemCount(currentMeetingsSize -1));
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, RecyclerViewUtils.clickChildView(R.id.item_delete_button)));
+        onView(ViewMatchers.withId(R.id.recyclerview)).check(new RecyclerViewUtils.ItemCount(currentMeetingsSize - 1));
 
     }
 
     @Test
     public void checkIfAddingMeetingWorks() {
+
+
         onView(ViewMatchers.withId(R.id.add_meeting_button)).perform(click());
         onView(ViewMatchers.withId(R.id.meeting_subject_input)).perform(typeText("Test meeting"));
         onView(ViewMatchers.withId(R.id.button_time)).perform(click());
-        onView(withClassName(Matchers.equalTo(TimePicker.class.getName()))).perform(TimePickerDialogUtils.setTime(11,15));
+        onView(withClassName(Matchers.equalTo(TimePicker.class.getName()))).perform(TimePickerDialogUtils.setTime(11, 15));
         onView(withText("OK")).perform(click());
         onView(ViewMatchers.withId(R.id.button_date)).perform(click());
-        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(DatePickerDialogUtils.setDate(11,12,2022));
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(DatePickerDialogUtils.setDate(11, 12, 2022));
         onView(withText("OK")).perform(click());
         onView(ViewMatchers.withId(R.id.pick_color_button)).perform(click());
-        //onView(isRoot()).inRoot(isPopupWindow()).perform(ColorPickerUtils.setColor(Color.YELLOW));
+        onView(isRoot()).inRoot(isPopupWindow()).perform(ColorPickerUtils.setColor(Color.YELLOW));
         onView(withText("Choose")).inRoot(isPopupWindow()).perform(click());
         onView(ViewMatchers.withId(R.id.etValue))
                 .perform(typeText("admin@mjcdouai.fr")).perform(ViewActions.pressImeActionButton())
@@ -91,11 +94,8 @@ public class MeetingListTest {
         onView(ViewMatchers.withId(R.id.meeting_place)).perform(click());
         onView(withText("Room 5")).perform(click());
         onView(ViewMatchers.withId(R.id.create_meeting_button)).perform(ViewActions.closeSoftKeyboard()).perform(click());
-        onView(ViewMatchers.withId(R.id.recyclerview)).check(new RecyclerViewUtils.ItemCount(currentMeetingsSize +1));
+        onView(ViewMatchers.withId(R.id.recyclerview)).check(new RecyclerViewUtils.ItemCount(currentMeetingsSize + 1));
 
-    }
-    public static Matcher<Root> isPopupWindow() {
-        return isPlatformPopup();
     }
 
 }

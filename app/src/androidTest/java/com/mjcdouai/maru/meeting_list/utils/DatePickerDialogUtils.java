@@ -19,7 +19,7 @@ public class DatePickerDialogUtils {
 
             @Override
             public String getDescription() {
-                return "set the passed date in the datepicker";
+                return "set the passed date in the DatePicker";
             }
 
             @Override

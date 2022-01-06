@@ -1,19 +1,15 @@
 package com.mjcdouai.maru.ui;
 
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mjcdouai.maru.databinding.ActivityListMeetingsBinding;
 import com.mjcdouai.maru.databinding.ListItemMeetingBinding;
 
 public class MeetingViewHolder extends RecyclerView.ViewHolder {
 
-    private  ListItemMeetingBinding mBinding;
+    private final ListItemMeetingBinding mBinding;
 
     public MeetingViewHolder(ListItemMeetingBinding b)
     {

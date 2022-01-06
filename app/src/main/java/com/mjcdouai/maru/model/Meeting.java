@@ -7,12 +7,12 @@ import android.os.Parcelable;
 import java.util.List;
 
 public class Meeting implements Parcelable {
-    private String mMeetingTime;
-    private String mMeetingDate;
-    private String mMeetingSubject;
-    private List<String> mMeetingUsers;
-    private String mMeetingPlace;
-    private Integer mMeetingColor;
+    private final String mMeetingTime;
+    private final String mMeetingDate;
+    private final String mMeetingSubject;
+    private final List<String> mMeetingUsers;
+    private final String mMeetingPlace;
+    private final Integer mMeetingColor;
     public static final String[] mMeetingPlaces = {
             "Mario","Luigi","Peach","Room 4","Room 5","Room 6","Room 7","Room 8", "Room 9", "Room 10"
     };
@@ -46,10 +46,6 @@ public class Meeting implements Parcelable {
         return mMeetingColor;
     }
 
-    public void setMeetingColor(Integer meetingColor) {
-        mMeetingColor = meetingColor;
-    }
-
     public Meeting(String meetingTime, String meetingDate, String meetingSubject, List<String> meetingUsers, String meetingPlace, Integer meetingColor) {
         mMeetingTime = meetingTime;
         mMeetingDate = meetingDate;
@@ -63,40 +59,20 @@ public class Meeting implements Parcelable {
         return mMeetingTime;
     }
 
-    public void setMeetingTime(String meetingTime) {
-        mMeetingTime = meetingTime;
-    }
-
     public String getMeetingDate() {
         return mMeetingDate;
-    }
-
-    public void setMeetingDate(String meetingDate) {
-        mMeetingDate = meetingDate;
     }
 
     public String getMeetingSubject() {
         return mMeetingSubject;
     }
 
-    public void setMeetingSubject(String meetingSubject) {
-        mMeetingSubject = meetingSubject;
-    }
-
     public List<String> getMeetingUsers() {
         return mMeetingUsers;
     }
 
-    public void setMeetingUsers(List<String> meetingUsers) {
-        mMeetingUsers = meetingUsers;
-    }
-
     public String getMeetingPlace() {
         return mMeetingPlace;
-    }
-
-    public void setMeetingPlace(String meetingPlace) {
-        mMeetingPlace = meetingPlace;
     }
 
     @Override

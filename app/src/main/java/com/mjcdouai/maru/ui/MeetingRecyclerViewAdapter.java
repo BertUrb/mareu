@@ -1,21 +1,14 @@
 package com.mjcdouai.maru.ui;
 
-import android.app.Activity;
-import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mjcdouai.maru.R;
 import com.mjcdouai.maru.databinding.ListItemMeetingBinding;
 import com.mjcdouai.maru.model.Meeting;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 
 public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingViewHolder> {

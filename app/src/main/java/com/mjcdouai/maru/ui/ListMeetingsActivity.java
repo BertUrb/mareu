@@ -1,10 +1,8 @@
 package com.mjcdouai.maru.ui;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -76,7 +74,7 @@ public class ListMeetingsActivity extends AppCompatActivity implements View.OnCl
            AlertDialog.Builder b = new AlertDialog.Builder(this);
            b.setTitle("Select Room");
 
-           b.setItems(mApi.getRooms(), (Dialog.OnClickListener) (dialog, which) -> {
+           b.setItems(mApi.getRooms(), (dialog, which) -> {
 
                dialog.dismiss();
                initList(mApi.filterMeetingByPlace(mApi.getRooms()[which]));

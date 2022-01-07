@@ -2,12 +2,18 @@ package com.mjcdouai.maru.meeting_list;
 
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
+import static androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.pressMenuKey;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.RootMatchers.isPlatformPopup;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
@@ -75,8 +81,6 @@ public class MeetingListTest {
 
     @Test
     public void checkIfAddingMeetingWorks() {
-
-
         onView(ViewMatchers.withId(R.id.add_meeting_button)).perform(click());
         onView(ViewMatchers.withId(R.id.meeting_subject_input)).perform(typeText("Test meeting"));
         onView(ViewMatchers.withId(R.id.button_time)).perform(click());
@@ -90,12 +94,42 @@ public class MeetingListTest {
         onView(withText("Choose")).inRoot(isPopupWindow()).perform(click());
         onView(ViewMatchers.withId(R.id.etValue))
                 .perform(typeText("admin@mjcdouai.fr")).perform(ViewActions.pressImeActionButton())
-                .perform(typeText("cyber@mjcdouai.fr")).perform(ViewActions.pressImeActionButton());
+                .perform(typeText("cyber@mjcdouai.fr")).perform(ViewActions.pressImeActionButton()).perform(ViewActions.closeSoftKeyboard());
+
         onView(ViewMatchers.withId(R.id.meeting_place)).perform(click());
         onView(withText("Room 5")).perform(click());
         onView(ViewMatchers.withId(R.id.create_meeting_button)).perform(ViewActions.closeSoftKeyboard()).perform(click());
         onView(ViewMatchers.withId(R.id.recyclerview)).check(new RecyclerViewUtils.ItemCount(currentMeetingsSize + 1));
+    }
+
+    @Test
+    public void checkIfFilteringDataByDateWorks()
+    {
+        onView(withId(R.id.filter_menu_item)).perform(click());
+        onView(withText(R.string.filter_by_date)).perform(click());
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(DatePickerDialogUtils.setDate(2, 11, 2021));
+        onView(withText("OK")).perform(click());
+        onView(ViewMatchers.withId(R.id.recyclerview)).check(new RecyclerViewUtils.ItemCount(2));
 
     }
+
+    @Test
+    public void checkIfFilteringDataByPlaceWorks()
+    {
+        onView(withId(R.id.filter_menu_item)).perform(click());
+        onView(withText(R.string.filter_by_place)).perform(click());
+        onView(withText("Peach")).perform(click());
+        onView(ViewMatchers.withId(R.id.recyclerview)).check(new RecyclerViewUtils.ItemCount(1));
+    }
+
+    @Test
+    public void checkIfNoFilterWorks()
+    {
+        checkIfFilteringDataByPlaceWorks();
+        onView(withId(R.id.filter_menu_item)).perform(click());
+        onView(withText(R.string.no_filter)).perform(click());
+        onView(ViewMatchers.withId(R.id.recyclerview)).check(new RecyclerViewUtils.ItemCount(3));
+    }
+
 
 }

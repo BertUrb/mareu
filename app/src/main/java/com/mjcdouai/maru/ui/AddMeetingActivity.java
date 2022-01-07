@@ -29,17 +29,13 @@ public class AddMeetingActivity extends AppCompatActivity implements View.OnClic
 
     private MeetingApiService mApi;
     private ActivityAddMeetingBinding mBinding;
-    // view box to preview the selected color
     private View mColorPreview;
-
-    // this is the default color of the preview box
     private int mDefaultColor;
     private int mLastSelectedYear;
     private int mLastSelectedMonth;
     private int mLastSelectedDayOfMonth;
     private int lastSelectedHour = -1;
     private int lastSelectedMinute = -1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +45,6 @@ public class AddMeetingActivity extends AppCompatActivity implements View.OnClic
         mBinding.createMeetingButton.setOnClickListener(this);
         mApi = DI.getMeetingApiService();
 
-        // Get Current Date
         final Calendar c = Calendar.getInstance();
         mLastSelectedYear = c.get(Calendar.YEAR);
         mLastSelectedMonth = c.get(Calendar.MONTH);
@@ -58,97 +53,43 @@ public class AddMeetingActivity extends AppCompatActivity implements View.OnClic
         mBinding.firstInfos.buttonDate.setOnClickListener(v -> buttonSelectDate());
         mBinding.firstInfos.buttonTime.setOnClickListener(v -> buttonSelectTime());
 
-        // chip group
         mBinding.miscInfos.etValue.setOnEditorActionListener((v, actionId, event) -> {
 
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 String txtVal = v.getText().toString();
                 if (!txtVal.isEmpty()) {
                     if (isValidEmail(txtVal)) {
-
-
                         addChipToGroup(txtVal, mBinding.miscInfos.chipGroup2);
                         mBinding.miscInfos.etValue.setText("");
                     } else {
-                        Toast toast = Toast.makeText(this, getString(R.string.toast_not_valid_mail), Toast.LENGTH_SHORT);
-                        toast.show();
+                        Toast.makeText(this, getString(R.string.toast_not_valid_mail), Toast.LENGTH_SHORT).show();
                     }
                 }
                 return true;
             }
-            // Return true if you have consumed the action, else false.
             return false;
         });
 
-        // register two of the buttons with their
-        // appropriate IDs
-        // two buttons to open color picker dialog and one to
-        // set the color for GFG text
         Button pickColorButton = mBinding.miscInfos.pickColorButton;
-
-
-        // and also register the view which shows the
-        // preview of the color chosen by the user
         mColorPreview = mBinding.miscInfos.previewSelectedColor;
-
-        // set the default color to 0 as it is black
         mDefaultColor = 0;
-
-        // handling the Pick Color Button to open color
-        // picker dialog
         pickColorButton.setOnClickListener(
-                v -> new ColorPickerPopup.Builder(getBaseContext()).initialColor(
-                        Color.RED) // set initial color
-                        // of the color
-                        // picker dialog
-                        .enableBrightness(
-                                true) // enable color brightness
-                        // slider or not
-                        .enableAlpha(
-                                true) // enable color alpha
-                        // changer on slider or
-                        // not
-                        .okTitle(
-                                "Choose") // this is top right
-                        // Choose button
-                        .cancelTitle(
-                                "Cancel") // this is top left
-                        // Cancel button which
-                        // closes the
-                        .showIndicator(
-                                true) // this is the small box
-                        // which shows the chosen
-                        // color by user at the
-                        // bottom of the cancel
-                        // button
-                        .showValue(
-                                true) // this is the value which
-                        // shows the selected
-                        // color hex code
-                        // the above all values can be made
-                        // false to disable them on the
-                        // color picker dialog.
+                v -> new ColorPickerPopup.Builder(getBaseContext()).initialColor(Color.RED)
+                        .enableBrightness(true)
+                        .enableAlpha(true)
+                        .okTitle(getString(R.string.StrChoose))
+                        .cancelTitle(getString(R.string.StrCancel))
+                        .showIndicator(true)
+                        .showValue(true)
                         .build()
-                        .show(
-                                v,
-                                new ColorPickerPopup.ColorPickerObserver() {
-                                    @Override
-                                    public void
-                                    onColorPicked(int color) {
-                                        // set the color
-                                        // which is returned
-                                        // by the color
-                                        // picker
-                                        mDefaultColor = color;
-
-                                        // now as soon as
-                                        // the dialog closes
-                                        // set the preview
-                                        // box to returned
-                                        // color
-                                        mColorPreview.setBackgroundColor(mDefaultColor);
-                                    }
-                                }));
+                        .show(v, new ColorPickerPopup.ColorPickerObserver() {
+                            @Override
+                            public void
+                            onColorPicked(int color) {
+                                mDefaultColor = color;
+                                mColorPreview.setBackgroundColor(mDefaultColor);
+                            }
+                        }));
 
     }
 
@@ -174,7 +115,6 @@ public class AddMeetingActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void buttonSelectDate() {
-        // Date Select Listener.
         DatePickerDialog.OnDateSetListener dateSetListener = (view, year, monthOfYear, dayOfMonth) -> {
 
             mBinding.firstInfos.editTextDate.setText(getString(R.string.date_format, dayOfMonth, monthOfYear + 1, year));

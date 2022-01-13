@@ -37,8 +37,8 @@ public class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingView
         holder.getSecondLine().setText(meeting.getMeetingUsers().toString().replace("[","").replace("]",""));
         holder.getCircle().setColorFilter(meeting.getMeetingColor());
         mBinding.itemDeleteButton.setOnClickListener(v -> {
-            mMeetingList.remove(holder.getAdapterPosition());
-            notifyItemRemoved(holder.getAdapterPosition());
+            mMeetingList.remove(holder.getBindingAdapterPosition());
+            notifyItemRemoved(holder.getBindingAdapterPosition());
 
         });
     }

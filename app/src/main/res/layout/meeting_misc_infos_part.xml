@@ -6,26 +6,27 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/emails" />
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="visible">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/etValue"
-                android:layout_width="wrap_content"
+                android:contentDescription="@string/contributors_emails"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:ems="10"
@@ -58,11 +59,6 @@
         android:layout_height="wrap_content"
         android:text="@string/your_picked_color_is" />
 
-    <!--sample view to preview selected color by user-->
-    <!--by default this has been set to darker gery-->
-    <!--this can be overridden after user chose the
-        color from color picker-->
-    <!--which has been handled in the MainActivity.java-->
     <View
         android:id="@+id/preview_selected_color"
         android:layout_width="48dp"
@@ -83,5 +79,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/places_array"
+        android:padding="16dp"
         android:spinnerMode="dialog" />
 </LinearLayout>

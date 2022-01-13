@@ -95,23 +95,48 @@ public class AddMeetingActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
+        boolean valid = true;
 
         String subject = mBinding.firstInfos.meetingSubjectInput.getText().toString();
+        if (subject.isEmpty()) {
+            valid = false;
+            Toast.makeText(this, getString(R.string.toast_subject_required), Toast.LENGTH_SHORT).show();
+            mBinding.firstInfos.meetingSubjectInput.setError(getString(R.string.toast_subject_required));
+        }
+
         String date = mBinding.firstInfos.editTextDate.getText().toString();
+        if (date.isEmpty()) {
+            valid = false;
+            Toast.makeText(this, getString(R.string.toast_date_required), Toast.LENGTH_SHORT).show();
+            mBinding.firstInfos.editTextDate.setError(getString(R.string.toast_date_required));
+        }
+
         String time = mBinding.firstInfos.editTextTime.getText().toString();
+        if (time.isEmpty()) {
+            valid = false;
+            Toast.makeText(this, getString(R.string.toast_time_required), Toast.LENGTH_SHORT).show();
+            mBinding.firstInfos.editTextTime.setError(getString(R.string.toast_time_required));
+        }
+
         String place = mBinding.miscInfos.meetingPlace.getSelectedItem().toString();
 
         List<String> list = new ArrayList<>();
-        for (int i = 0; i < mBinding.miscInfos.chipGroup2.getChildCount(); i++) {
-            Chip chip = (Chip) mBinding.miscInfos.chipGroup2.getChildAt(i);
-            list.add(chip.getText().toString());
-
+        if (mBinding.miscInfos.chipGroup2.getChildCount() < 1) {
+            valid = false;
+            Toast.makeText(this, getString(R.string.toast_mail_required), Toast.LENGTH_SHORT).show();
+            mBinding.miscInfos.etValue.setError(getString(R.string.toast_mail_required));
+        } else {
+            for (int i = 0; i < mBinding.miscInfos.chipGroup2.getChildCount(); i++) {
+                Chip chip = (Chip) mBinding.miscInfos.chipGroup2.getChildAt(i);
+                list.add(chip.getText().toString());
+            }
         }
 
-        Meeting meeting = new Meeting(time, date, subject, list, place, mDefaultColor);
-        mApi.addMeeting(meeting);
-
-        finish();
+        if (valid) {
+            Meeting meeting = new Meeting(time, date, subject, list, place, mDefaultColor);
+            mApi.addMeeting(meeting);
+            finish();
+        }
     }
 
     private void buttonSelectDate() {

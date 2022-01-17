@@ -19,10 +19,10 @@
 <li>The date is not displayed</h2>
 </ul>
 
-<h3>Filtering<h3>
+<h3>Filtering</h3>
 <p>Thanks to the top menu, the meetings can be filtered by date or place. There is also an option to delete all filter</p>
 
-<h4>Adding a meeting<h4>
+<h3>Adding a meeting</h3>
 <p> All fields are required</p>
 <ul>
 <li><b>Pick color</b>: Choose the Meeting's color. The following project was integrated : <a href="https://github.com/duanhong169/ColorPicker.git">https://github.com/duanhong169/ColorPicker.git</a></li>

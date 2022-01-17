@@ -13,7 +13,7 @@
 
 <h2>Features</h2>
 <p>This app is a POC, the meetings aren't saved when the app is closed.</p>
-<h3>Meetings' listing</h3
+<h3>Meetings' listing</h3>
 <ul>
 <li>The color is the choosen one for the meeting when it was created</li>
   <li>The date is not displayed</li>

@@ -16,7 +16,7 @@
 <h3>Meetings' listing</h3
 <ul>
 <li>The color is the choosen one for the meeting when it was created</li>
-<li>The date is not displayed</h2>
+  <li>The date is not displayed</li>
 </ul>
 
 <h3>Filtering</h3>

@@ -118,7 +118,7 @@ public class AddMeetingActivity extends AppCompatActivity implements View.OnClic
         String place = mBinding.miscInfos.meetingPlace.getSelectedItem().toString();
 
         List<String> list = new ArrayList<>();
-        if (mBinding.miscInfos.chipGroup2.getChildCout(n) < 1) {
+        if (mBinding.miscInfos.chipGroup2.getChildCount() < 1) {
             valid = false;
                        mBinding.miscInfos.etValue.setError(getString(R.string.toast_mail_required));
         } else {

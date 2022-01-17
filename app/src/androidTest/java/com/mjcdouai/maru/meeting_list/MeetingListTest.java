@@ -2,26 +2,18 @@ package com.mjcdouai.maru.meeting_list;
 
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
-import static androidx.test.espresso.Espresso.openContextualActionModeOverflowMenu;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.pressMenuKey;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.matcher.RootMatchers.isPlatformPopup;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThat;
 
 import android.graphics.Color;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
-import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Root;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
@@ -60,8 +52,6 @@ public class MeetingListTest {
     @Before
     public void setUp() {
         MeetingApiService api = DI.getMeetingApiService();
-        ActivityScenario<ListMeetingsActivity> activity = mActivityRule.getScenario();
-        assertThat(activity, notNullValue());
         currentMeetingsSize = api.getMeetings().size();
 
     }
@@ -128,7 +118,7 @@ public class MeetingListTest {
         checkIfFilteringDataByPlaceWorks();
         onView(withId(R.id.filter_menu_item)).perform(click());
         onView(withText(R.string.no_filter)).perform(click());
-        onView(ViewMatchers.withId(R.id.recyclerview)).check(new RecyclerViewUtils.ItemCount(3));
+        onView(ViewMatchers.withId(R.id.recyclerview)).check(new RecyclerViewUtils.ItemCount(currentMeetingsSize));
     }
 
 

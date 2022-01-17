@@ -1,5 +1,5 @@
 <H1>Ma réu</h1>
-<i>Another Meeting Management app<i>
+<i>Another Meeting Management app</i>
 <p>This app is a proof of context for meeting management.<p>
 
 <h2>Installation</h2>
@@ -25,6 +25,5 @@
 <h4>Adding a meeting<h4>
 <p> All fields are required</p>
 <ul>
-<li><b>/b>: Subect of the meeting</li>
 <li><b>Pick color</b>: Choose the Meeting's color. The following project was integrated : <a href="https://github.com/duanhong169/ColorPicker.git">https://github.com/duanhong169/ColorPicker.git</a></li>
 </ul>

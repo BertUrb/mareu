@@ -39,6 +39,7 @@
     <string name="toast_time_required">Time of the meeting is required</string>
     <string name="toast_mail_required">At least one email is required</string>
     <string name="contributors_emails">contributors\' emails</string>
+    <string name="select_room">Select Room</string>
     <string-array name="places_array">
         <item>Peach</item>
         <item>Mario</item>

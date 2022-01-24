@@ -53,8 +53,4 @@ public class DummyMeetingApiService implements  MeetingApiService{
 
     }
 
-    @Override
-    public String[] getRooms() {
-        return Meeting.mMeetingPlaces;
-    }
 }

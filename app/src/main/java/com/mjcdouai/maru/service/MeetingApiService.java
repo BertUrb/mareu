@@ -10,7 +10,4 @@ public interface MeetingApiService {
     void delMeeting(Meeting meeting);
     List<Meeting> filterMeetingByDate(String date);
     List<Meeting> filterMeetingByPlace(String place);
-    String[] getRooms();
-
-
 }

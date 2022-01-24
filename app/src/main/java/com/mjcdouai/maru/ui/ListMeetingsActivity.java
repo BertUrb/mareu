@@ -25,65 +25,50 @@ public class ListMeetingsActivity extends AppCompatActivity implements View.OnCl
     private ActivityListMeetingsBinding mBinding;
     private MeetingApiService mApi;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         mBinding = ActivityListMeetingsBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
         mBinding.addMeetingButton.setOnClickListener(this);
         mApi = DI.getMeetingApiService();
         initList(mApi.getMeetings());
-
-
     }
 
     private void initList(List<Meeting> meetings) {
-
         mBinding.recyclerview.setAdapter(new MeetingRecyclerViewAdapter(meetings));
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-       if(item.getTitle().equals(getResources().getString(R.string.filter_by_date)))
+        String title = item.getTitle().toString();
+       if(title.equals(getResources().getString(R.string.filter_by_date)))
        {
            DatePickerDialog.OnDateSetListener dateSetListener = (view, year, monthOfYear, dayOfMonth) -> initList(mApi.filterMeetingByDate(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year));
            final Calendar c = Calendar.getInstance();
            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                    dateSetListener, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
-
-
-           // Show
            datePickerDialog.show();
 
        }
-       else if(item.getTitle().equals(getResources().getString(R.string.filter_by_place)))
+       else if(title.equals(getResources().getString(R.string.filter_by_place)))
        {
            AlertDialog.Builder b = new AlertDialog.Builder(this);
-           b.setTitle("Select Room");
-
-           b.setItems(mApi.getRooms(), (dialog, which) -> {
-
+           b.setTitle(R.string.select_room);
+           b.setItems(getResources().getStringArray(R.array.places_array), (dialog, which) -> {
                dialog.dismiss();
-               initList(mApi.filterMeetingByPlace(mApi.getRooms()[which]));
+               initList(mApi.filterMeetingByPlace(getResources().getStringArray(R.array.places_array)[which]));
                });
-
-
            b.show();
        }
-       else if(item.getTitle().equals(getResources().getString(R.string.no_filter)))
+       else if(title.equals(getResources().getString(R.string.no_filter)))
        {
            initList(mApi.getMeetings());
        }
@@ -93,7 +78,6 @@ public class ListMeetingsActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
        startActivity(new Intent(getBaseContext(), AddMeetingActivity.class));
-
     }
 
     @Override
@@ -101,6 +85,4 @@ public class ListMeetingsActivity extends AppCompatActivity implements View.OnCl
         super.onResume();
         initList(mApi.getMeetings());
     }
-
-
 }

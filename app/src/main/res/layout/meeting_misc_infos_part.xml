@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/linar_layout_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -43,6 +47,8 @@
         android:id="@+id/chipGroup2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linar_layout_text"
         android:duplicateParentState="false">
 
     </com.google.android.material.chip.ChipGroup>
@@ -53,14 +59,22 @@
         android:id="@+id/pick_color_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/chipGroup2"
         android:text="@string/pick_color" />
 
     <TextView
+        android:id="@+id/tv_color_picked"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pick_color_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/your_picked_color_is" />
 
     <View
+        app:layout_constraintTop_toBottomOf="@id/tv_color_picked"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/preview_selected_color"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -69,6 +83,10 @@
         android:background="@android:color/darker_gray" />
 
     <TextView
+        android:id="@+id/tv_place"
+        app:layout_constraintTop_toBottomOf="@+id/preview_selected_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:drawablePadding="12dp"
@@ -76,10 +94,13 @@
         app:drawableStartCompat="@drawable/ic_baseline_place_24" />
 
     <Spinner
+        app:layout_constraintTop_toBottomOf="@id/tv_place"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/meeting_place"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/places_array"
         android:padding="16dp"
         android:spinnerMode="dialog" />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

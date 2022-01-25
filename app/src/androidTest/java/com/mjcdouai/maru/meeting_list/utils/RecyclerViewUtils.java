@@ -1,14 +1,9 @@
 package com.mjcdouai.maru.meeting_list.utils;
 
 
+import static org.junit.Assert.assertEquals;
+
 import android.view.View;
-
-import org.hamcrest.Matcher;
-
-
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.test.espresso.NoMatchingViewException;
@@ -16,9 +11,10 @@ import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.ViewAssertion;
 
+import org.hamcrest.Matcher;
+
 import java.util.Objects;
 
-//This class comes from Project 2
 public class RecyclerViewUtils {
 
     public static class ItemCount implements ViewAssertion {
@@ -36,7 +32,7 @@ public class RecyclerViewUtils {
 
             RecyclerView recyclerView = (RecyclerView) view;
 
-            assertThat(Objects.requireNonNull(recyclerView.getAdapter()).getItemCount(), is(expectedCount));
+            assertEquals(Objects.requireNonNull(recyclerView.getAdapter()).getItemCount(), expectedCount);
         }
     }
 

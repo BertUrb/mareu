@@ -72,7 +72,7 @@ public class MeetingListTest {
     @Test
     public void checkIfAddingMeetingWorks() {
         onView(ViewMatchers.withId(R.id.add_meeting_button)).perform(click());
-        onView(ViewMatchers.withId(R.id.meeting_subject_input)).perform(typeText("Test meeting"));
+        onView(ViewMatchers.withId(R.id.meeting_subject_input)).perform(typeText("Test meeting")).perform(ViewActions.closeSoftKeyboard());
         onView(ViewMatchers.withId(R.id.button_time)).perform(click());
         onView(withClassName(Matchers.equalTo(TimePicker.class.getName()))).perform(TimePickerDialogUtils.setTime(11, 15));
         onView(withText("OK")).perform(click());
@@ -83,12 +83,11 @@ public class MeetingListTest {
         onView(isRoot()).inRoot(isPopupWindow()).perform(ColorPickerUtils.setColor(Color.YELLOW));
         onView(withText("Choose")).inRoot(isPopupWindow()).perform(click());
         onView(ViewMatchers.withId(R.id.etValue))
-                .perform(typeText("admin@mjcdouai.fr")).perform(ViewActions.pressImeActionButton())
+                .perform(typeText("admin@mjcdouai.fr")).perform(ViewActions.pressImeActionButton()).perform(ViewActions.closeSoftKeyboard())
                 .perform(typeText("cyber@mjcdouai.fr")).perform(ViewActions.pressImeActionButton()).perform(ViewActions.closeSoftKeyboard());
-
-        onView(ViewMatchers.withId(R.id.meeting_place)).perform(click());
+        onView(ViewMatchers.withId(R.id.meeting_place)).perform(ViewActions.scrollTo()).perform(click());
         onView(withText("Room 5")).perform(click());
-        onView(ViewMatchers.withId(R.id.create_meeting_button)).perform(ViewActions.closeSoftKeyboard()).perform(click());
+        onView(ViewMatchers.withId(R.id.create_meeting_button)).perform(ViewActions.closeSoftKeyboard()).perform(ViewActions.scrollTo()).perform(click());
         onView(ViewMatchers.withId(R.id.recyclerview)).check(new RecyclerViewUtils.ItemCount(currentMeetingsSize + 1));
     }
 
